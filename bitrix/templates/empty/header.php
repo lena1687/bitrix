@@ -1,6 +1,8 @@
 <?
 if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 	die();
+$blsMainPage = $APPLICATION->GetCurPage(false) == SITE_DIR;
+/*теперь эту переменную можно использовать, чтобы отображать его на главной странице, например хлебные крошки*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,9 @@ if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/css/style.min.css'); ?>
         <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/css/bootstrap-style.min.css'); ?>
+        <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/css/jquery.fancybox.min.css'); ?>
+        <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/css/owl.carousel.min.css'); ?>
+        <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/css/owl.theme.default.min.css'); ?>
         <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/libs/font-awesome-4.7.0/css/font-awesome.min.css'); ?>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -26,18 +31,33 @@ if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
                     <div class="row">
                         <div class="col-sm-6 col-12 text-sm-left text-center">
                             <div class="telefon float-sm-left float-none">
-                                <img src="img/tel.png" alt="telefon" width="20px" height="20px">
-                                <a class="number-tel align-middle pl-3" href="callto:89081111111">
-                                    +7908-11-11-111
+                                <img src="<?=SITE_TEMPLATE_PATH?>/img/tel.png" alt="telefon" width="20px" height="20px">
+                                <a class="number-tel align-middle pl-3"
+                                   href="callto:<?$APPLICATION->IncludeFile(
+                                    SITE_DIR."include/tel.php",
+                                    array(),
+                                    array(
+                                        "MORE" => "text"
+                                    )
+                                );?>">
+                                    <?$APPLICATION->IncludeFile(
+                                        SITE_DIR."include/tel.php",
+                                        array(),
+                                        array(
+                                                "MORE" => "text"
+                                        )
+                                    );?>
                                 </a>
                             </div>
                         </div>
                         <div class="col-sm-6 col-12 text-sm-right text-center">
-                            <div class="social float-sm-right float-none">
-                                <a href="https://vk.com/l.sedelnikova" target="blank" class="vk d-inline-block"></a><!--
-								--><a href="https://ok.ru/?_erv=vuyzlyirbwpynedjrs" target="blank" class="ok d-inline-block"></a><!--
-								--><a href="https://my.mail.ru/mail/lena1687/" target="blank" class="my-space d-inline-block"></a>
-                            </div>
+                            <?$APPLICATION->IncludeFile(
+                                SITE_DIR."include/social.php",
+                                array(),
+                                array(
+                                    "MORE" => "html"
+                                )
+                            );?>
                         </div>
                     </div>
                 </div>
@@ -49,19 +69,57 @@ if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
                         <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
                     </button>
                     <div class="collapse navbar-collapse text-center" id="main-menu">
+
+                        <?if($blsMainPage):?>
                         <div class="header-logo navbar-header text-sm-left text-center">
-                            <a href="index-bootstrap.html">
-                                <img src="img/logo.png" alt="telefon" width="75px" height="70px">
-                            </a>
+                            <?else:?>
+                            <a class="header-logo" href="/">
+                                <?endif;?>
+                                <?if($blsMainPage):?>
                         </div>
-                        <ul class="nav navbar-nav navbar header-menu float-none text-center p-0">
-                            <li class="nav-item active"><a class="nav-link d-inline-block text-uppercase" href="about-bootstrap.html">About me</a></li>
-                            <li class="nav-item"><a href="news-bootstrap.html" class="nav-link d-inline-block text-uppercase">News</a></li>
-                            <li class="nav-item"><a href="contacts-bootstrap.html" class="nav-link d-inline-block text-uppercase">Contacts</a></li>
-                        </ul>
+                        <?else:?>
+                            </a>
+                        <?endif;?>
+
+                        <?$APPLICATION->IncludeComponent("bitrix:menu", "template1", Array(
+                            "ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
+                            "CHILD_MENU_TYPE" => "left",	// Тип меню для остальных уровней
+                            "DELAY" => "N",	// Откладывать выполнение шаблона меню
+                            "MAX_LEVEL" => "1",	// Уровень вложенности меню
+                            "MENU_CACHE_GET_VARS" => array(	// Значимые переменные запроса
+                                0 => "",
+                            ),
+                            "MENU_CACHE_TIME" => "3600",	// Время кеширования (сек.)
+                            "MENU_CACHE_TYPE" => "N",	// Тип кеширования
+                            "MENU_CACHE_USE_GROUPS" => "Y",	// Учитывать права доступа
+                            "ROOT_MENU_TYPE" => "top",	// Тип меню для первого уровня
+                            "USE_EXT" => "N",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
+                        ),
+                            false
+                        );?>
                     </div>
                 </div>
             </nav>
+            <section class="breadcrumb">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-sm-left text-center">
+                        <?if(!$blsMainPage):?>
+                            <!--сюда можно вставить блоки, отображающиеся на главной странице, новости, слайдер, в конце < ?endif;?> без пробела после скобки-->
+                            <?$APPLICATION->IncludeComponent(
+                                "bitrix:breadcrumb",
+                                "",
+                                Array(
+                                    "PATH" => "",
+                                    "SITE_ID" => "nu",
+                                    "START_FROM" => "0"
+                                )
+                            );?>
+                            <?endif;?>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </header>
 
 	
