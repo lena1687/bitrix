@@ -1,43 +1,13 @@
 <?
 require($_SERVER['DOCUMENT_ROOT'].'/bitrix/header.php');
-$APPLICATION->SetTitle('Главная');
+$APPLICATION->SetTitle('Home');
 ?>
     <main>
         <section class="site-content">
             <div class="strip"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-5 col-sm-4 col-12">
-                        <div class="picture-left float-xl-left float-lg-none">
-                            <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="hover">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carouselExample" data-slide-to="1"></li>
-                                    <li data-target="#carouselExample" data-slide-to="2"></li>
-                                </ol>
-                                <div class="carousel-inner" role="listbox">
-                                    <div class="carousel-item active">
-                                        <img src="<?=SITE_TEMPLATE_PATH?>/img/slide1.png" alt="First slide" width="330px" height="584px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="<?=SITE_TEMPLATE_PATH?>/img/slide2.png" alt="Second slide" width="330px" height="584px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="<?=SITE_TEMPLATE_PATH?>/img/slide3.png" alt="Third slide" width="330px" height="584px">
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-7 col-sm-8 col-12 text-sm-left text-center">
+                    <div class="col-12 text-sm-left text-center">
                         <div class="content-right d-inline-block">
                             <h1 class="text-uppercase">Push yourself & your designs</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

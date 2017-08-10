@@ -2,6 +2,9 @@
 if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 	die();
 ?>
+<?if(ERROR_404=="Y"):?>
+</div>  <!--закрывается класс с 404 ошибкой-->
+    <?endif;?>
 <footer>
     <div class="container">
         <div class="row">
