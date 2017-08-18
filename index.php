@@ -3,6 +3,81 @@ require($_SERVER['DOCUMENT_ROOT'].'/bitrix/header.php');
 $APPLICATION->SetTitle('Home');
 ?>
     <main>
+        <section class="top-slider">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 p-0">
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:news.list",
+                            "slider",
+                            array(
+                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                "ADD_SECTIONS_CHAIN" => "N",
+                                "AJAX_MODE" => "N",
+                                "AJAX_OPTION_ADDITIONAL" => "",
+                                "AJAX_OPTION_HISTORY" => "N",
+                                "AJAX_OPTION_JUMP" => "N",
+                                "AJAX_OPTION_STYLE" => "Y",
+                                "CACHE_FILTER" => "N",
+                                "CACHE_GROUPS" => "Y",
+                                "CACHE_TIME" => "36000000",
+                                "CACHE_TYPE" => "A",
+                                "CHECK_DATES" => "Y",
+                                "DETAIL_URL" => "",
+                                "DISPLAY_BOTTOM_PAGER" => "Y",
+                                "DISPLAY_DATE" => "N",
+                                "DISPLAY_NAME" => "Y",
+                                "DISPLAY_PICTURE" => "Y",
+                                "DISPLAY_PREVIEW_TEXT" => "Y",
+                                "DISPLAY_TOP_PAGER" => "N",
+                                "FIELD_CODE" => array(
+                                    0 => "SORT",
+                                    1 => "PREVIEW_TEXT",
+                                    2 => "PREVIEW_PICTURE",
+                                    3 => "",
+                                ),
+                                "FILTER_NAME" => "",
+                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                "IBLOCK_ID" => "1",
+                                "IBLOCK_TYPE" => "index",
+                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                "INCLUDE_SUBSECTIONS" => "N",
+                                "MESSAGE_404" => "",
+                                "NEWS_COUNT" => "50",
+                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                "PAGER_DESC_NUMBERING" => "N",
+                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                "PAGER_SHOW_ALL" => "N",
+                                "PAGER_SHOW_ALWAYS" => "N",
+                                "PAGER_TEMPLATE" => ".default",
+                                "PAGER_TITLE" => "Новости",
+                                "PARENT_SECTION" => "",
+                                "PARENT_SECTION_CODE" => "",
+                                "PREVIEW_TRUNCATE_LEN" => "",
+                                "PROPERTY_CODE" => array(
+                                    0 => "url",
+                                    1 => "",
+                                ),
+                                "SET_BROWSER_TITLE" => "N",
+                                "SET_LAST_MODIFIED" => "N",
+                                "SET_META_DESCRIPTION" => "N",
+                                "SET_META_KEYWORDS" => "N",
+                                "SET_STATUS_404" => "N",
+                                "SET_TITLE" => "N",
+                                "SHOW_404" => "N",
+                                "SORT_BY1" => "SORT",
+                                "SORT_BY2" => "TIMESTAMP_X",
+                                "SORT_ORDER1" => "ASC",
+                                "SORT_ORDER2" => "DESC",
+                                "STRICT_SECTION_CHECK" => "N",
+                                "COMPONENT_TEMPLATE" => "slider"
+                            ),
+                            false
+                        );?>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="site-content">
             <div class="strip"></div>
             <div class="container">
@@ -15,87 +90,6 @@ $APPLICATION->SetTitle('Home');
                                 <a href="#" class="d-inline-block text-center">Read more</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="feedback">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-5 col-lg-4 col-md-0">
-                    </div>
-                    <div class="col-xl-7 col-lg-8 col-sm-12">
-                        <form class="feedback-form d-inline-block float-left w-100" action="#" method="post">
-                            <h2 class="text-left">Let's talk</h2>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-fullname w-100">
-                                        <div class="form-name d-inline-block w-100">
-                                            <input type="text" name="name" id="name-field" placeholder="Your name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-surname d-inline-block w-100">
-                                        <input type="text" name="surname" id="surname-field" placeholder="Your surname">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-details">
-                                        <div class="form-email d-inline-block w-100">
-                                            <input type="text" name="email" id="email-field" placeholder="Your email">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-volume d-inline-block w-100">
-                                        <select name="volume" id="volume-field">
-                                            <option disabled selected>Application Design</option>
-                                            <option value="Landing">Landing</option>
-                                            <option value="Medium difficulty">Medium difficulty</option>
-                                            <option value="Premium">Premium</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-comment d-inline-block w-100">
-                                        <textarea name="comment" id="comment-field" rows="5" placeholder="Describe your request here"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 text-sm-center text-center">
-                                    <div class="form-checkbox w-100">
-                                        <h2>Subscription to:</h2>
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="agreement d-inline-block">
-                                                    <input type="checkbox"  class="checkbox" id="checkbox-1" name="checkbox-1" value="News and updates" checked>
-                                                    <label for="checkbox-1">News and updates</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="negation d-inline-block">
-                                                    <input type="checkbox" class="checkbox" id="checkbox-2" name="checkbox-2" value="Contact with me">
-                                                    <label for="checkbox-2">Contact with me</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-sm-12 text-sm-center text-center">
-                                    <div class="form-button float-md-right float-sm-none d-inline-block">
-                                        <button type="submit" class="text-uppercase">Send</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

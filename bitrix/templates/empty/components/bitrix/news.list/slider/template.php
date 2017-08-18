@@ -25,7 +25,6 @@ $this->setFrameMode(true);
                 <div class="carousel-inner" role="listbox">
 
     <?foreach($arResult["ITEMS"] as $cell=>$arItem):?>
-
             <div class="carousel-item <?if(!$cell):?>active<?endif;?>">
                 <img class="img-responsive" src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
                      width="<?=$arItem["PREVIEW_PICTURE"]["WIDTH"]?>"
@@ -38,7 +37,7 @@ $this->setFrameMode(true);
                             <?echo $arItem["PREVIEW_TEXT"];?>
                         <?endif;?></p>
                     <?if($arItem['PROPERTIES']['url']['VALUE']):?>
-                        <a class="link" href="#">Read more</a>
+                        <a class="link" href="<?=$arItem['PROPERTIES']['url']['VALUE']?>">Read more</a>
                     <?endif;?>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExample" role='button' data-slide="prev">

@@ -32,7 +32,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"] <> '' && (!isset($_P
 		if(empty($arParams["REQUIRED_FIELDS"]) || !in_array("NONE", $arParams["REQUIRED_FIELDS"]))
 		{
 			if((empty($arParams["REQUIRED_FIELDS"]) || in_array("NAME", $arParams["REQUIRED_FIELDS"])) && strlen($_POST["user_name"]) <= 1)
-				$arResult["ERROR_MESSAGE"][] = GetMessage("MF_REQ_NAME");		
+				$arResult["ERROR_MESSAGE"][] = GetMessage("MF_REQ_NAME");
+            if((empty($arParams["REQUIRED_FIELDS"]) || in_array("TELL", $arParams["REQUIRED_FIELDS"])) && strlen($_POST["user_tell"]) <= 7)
+                $arResult["ERROR_MESSAGE"][] = GetMessage("MF_REQ_TELL");
 			if((empty($arParams["REQUIRED_FIELDS"]) || in_array("EMAIL", $arParams["REQUIRED_FIELDS"])) && strlen($_POST["user_email"]) <= 1)
 				$arResult["ERROR_MESSAGE"][] = GetMessage("MF_REQ_EMAIL");
 			if((empty($arParams["REQUIRED_FIELDS"]) || in_array("MESSAGE", $arParams["REQUIRED_FIELDS"])) && strlen($_POST["MESSAGE"]) <= 3)
@@ -60,6 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"] <> '' && (!isset($_P
 		{
 			$arFields = Array(
 				"AUTHOR" => $_POST["user_name"],
+                "TELL" => $_POST["user_tell"],
 				"AUTHOR_EMAIL" => $_POST["user_email"],
 				"EMAIL_TO" => $arParams["EMAIL_TO"],
 				"TEXT" => $_POST["MESSAGE"],
@@ -73,10 +76,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["submit"] <> '' && (!isset($_P
 			else
 				CEvent::Send($arParams["EVENT_NAME"], SITE_ID, $arFields);
 			$_SESSION["MF_NAME"] = htmlspecialcharsbx($_POST["user_name"]);
+            $_SESSION["MF_TELL"] = htmlspecialcharsbx($_POST["user_tell"]);
 			$_SESSION["MF_EMAIL"] = htmlspecialcharsbx($_POST["user_email"]);
 			LocalRedirect($APPLICATION->GetCurPageParam("success=".$arResult["PARAMS_HASH"], Array("success")));
 		}
-		
 		$arResult["MESSAGE"] = htmlspecialcharsbx($_POST["MESSAGE"]);
 		$arResult["AUTHOR_NAME"] = htmlspecialcharsbx($_POST["user_name"]);
 		$arResult["AUTHOR_EMAIL"] = htmlspecialcharsbx($_POST["user_email"]);
@@ -100,6 +103,8 @@ if(empty($arResult["ERROR_MESSAGE"]))
 	{
 		if(strlen($_SESSION["MF_NAME"]) > 0)
 			$arResult["AUTHOR_NAME"] = htmlspecialcharsbx($_SESSION["MF_NAME"]);
+        if(strlen($_SESSION["MF_TELL"]) > 0)
+            $arResult["TELL"] = htmlspecialcharsbx($_SESSION["MF_TELL"]);
 		if(strlen($_SESSION["MF_EMAIL"]) > 0)
 			$arResult["AUTHOR_EMAIL"] = htmlspecialcharsbx($_SESSION["MF_EMAIL"]);
 	}
