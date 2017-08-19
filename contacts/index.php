@@ -20,10 +20,8 @@ $APPLICATION->SetTitle("Contacts");
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
         <div class="row">
-            <div class="col-10 offset-1">
+            <div class="col-8 offset-2">
                 <div class="feedback">
                 <?$APPLICATION->IncludeComponent("bitrix:main.feedback", "feedback", Array(
                     "EMAIL_TO" => "lena1687@mail.ru",	// E-mail, на который будет отправлено письмо
